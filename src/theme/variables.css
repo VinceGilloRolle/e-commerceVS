@@ -1,0 +1,390 @@
+/* Vape Shop — black / white / pink cinematic system */
+:root {
+  --vs-black: #050505;
+  --vs-ink: #0f0f0f;
+  --vs-white: #ffffff;
+  --vs-pink: #ff4d8d;
+  --vs-pink-deep: #d4146a;
+  --vs-pink-soft: #fff0f5;
+  --vs-pink-line: #f3d6e3;
+  --vs-muted: #5c5c5c;
+  --vs-font-display: 'Syne', sans-serif;
+  --vs-font-body: 'Outfit', sans-serif;
+  --vs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --pointer-x: 50%;
+  --pointer-y: 40%;
+
+  --ion-font-family: var(--vs-font-body);
+
+  --ion-color-primary: #ff4d8d;
+  --ion-color-primary-rgb: 255, 77, 141;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #e0447c;
+  --ion-color-primary-tint: #ff5f98;
+
+  --ion-color-secondary: #111111;
+  --ion-color-secondary-rgb: 17, 17, 17;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #0e0e0e;
+  --ion-color-secondary-tint: #292929;
+
+  --ion-color-dark: #050505;
+  --ion-color-dark-rgb: 5, 5, 5;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #040404;
+  --ion-color-dark-tint: #1e1e1e;
+
+  --ion-color-success: #ff4d8d;
+  --ion-color-success-rgb: 255, 77, 141;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #e0447c;
+  --ion-color-success-tint: #ff5f98;
+
+  --ion-color-danger: #d4146a;
+  --ion-color-danger-rgb: 212, 20, 106;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #bb125d;
+  --ion-color-danger-tint: #d82b79;
+
+  --ion-color-medium: #ffe4ef;
+  --ion-color-medium-rgb: 255, 228, 239;
+  --ion-color-medium-contrast: #111111;
+  --ion-color-medium-contrast-rgb: 17, 17, 17;
+  --ion-color-medium-shade: #e0c9d2;
+  --ion-color-medium-tint: #ffe7f1;
+
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255, 255, 255;
+  --ion-text-color: #0f0f0f;
+  --ion-text-color-rgb: 15, 15, 15;
+  --ion-item-background: #ffffff;
+  --ion-card-background: #ffffff;
+  --ion-toolbar-background: rgba(5, 5, 5, 0.78);
+  --ion-toolbar-color: #ffffff;
+  --ion-border-color: #f3d6e3;
+}
+
+::selection {
+  background: rgba(255, 77, 141, 0.28);
+  color: #050505;
+}
+
+html,
+body,
+ion-app {
+  font-family: var(--vs-font-body);
+  letter-spacing: 0.01em;
+  background: var(--vs-black);
+  color: var(--vs-ink);
+}
+
+body {
+  cursor: crosshair;
+}
+
+a,
+button,
+ion-button,
+ion-item,
+.product-tile,
+.chip {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+.display-type {
+  font-family: var(--vs-font-display);
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+a {
+  color: var(--vs-pink);
+  text-decoration: none;
+  transition: color 0.25s var(--vs-ease);
+}
+
+a:hover {
+  color: var(--vs-pink-deep);
+}
+
+/* Film grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.045;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Soft pointer aurora */
+body::after {
+  content: '';
+  position: fixed;
+  width: 42vmax;
+  height: 42vmax;
+  left: var(--pointer-x);
+  top: var(--pointer-y);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 77, 141, 0.16), transparent 68%);
+  transition: left 0.35s ease-out, top 0.35s ease-out;
+}
+
+ion-app {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ionic surfaces */
+ion-toolbar {
+  --min-height: 62px;
+  --border-width: 0;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+
+ion-title {
+  font-family: var(--vs-font-display);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.92rem;
+}
+
+ion-button {
+  --border-radius: 999px;
+  --box-shadow: none;
+  font-family: var(--vs-font-body);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.25s var(--vs-ease), opacity 0.25s ease, filter 0.25s ease;
+}
+
+ion-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+ion-searchbar {
+  --background: rgba(255, 255, 255, 0.88);
+  --border-radius: 999px;
+  --box-shadow: inset 0 0 0 1px #f3d6e3;
+  --placeholder-color: #888;
+  padding-inline: 0 !important;
+}
+
+ion-segment {
+  --background: #f4f4f4;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+ion-segment-button {
+  --border-radius: 999px;
+  --indicator-color: var(--vs-pink);
+  --color-checked: #ffffff;
+  min-height: 40px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+}
+
+ion-card {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  margin: 0;
+}
+
+ion-item {
+  --border-color: var(--vs-pink-line);
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+ion-spinner {
+  --color: var(--vs-pink);
+}
+
+.price-text {
+  color: var(--vs-pink);
+  font-family: var(--vs-font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 1.5rem;
+  color: var(--vs-muted);
+}
+
+.empty-state h2 {
+  margin-bottom: 0.5rem;
+  color: var(--vs-ink);
+  font-family: var(--vs-font-display);
+}
+
+.page-shell {
+  position: relative;
+  min-height: 100%;
+}
+
+.page-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 40% at 100% 0%, rgba(255, 77, 141, 0.1), transparent 55%),
+    radial-gradient(ellipse 45% 30% at 0% 100%, rgba(255, 77, 141, 0.07), transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, #fff8fb 100%);
+}
+
+.page-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Motion library */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes catalog-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes bounce-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.9s var(--vs-ease) both;
+}
+
+.rise-in-delay-1 {
+  animation-delay: 0.14s;
+}
+
+.rise-in-delay-2 {
+  animation-delay: 0.28s;
+}
+
+.rise-in-delay-3 {
+  animation-delay: 0.42s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body::after {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  body {
+    cursor: auto;
+  }
+
+  body::after {
+    display: none;
+  }
+}

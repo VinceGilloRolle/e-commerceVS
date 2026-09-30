@@ -1,0 +1,7 @@
+-- ============================================
+-- Store owner admin account
+-- Password is hashed; recreate with:
+--   cd backend && node scripts/ensureAdmin.js
+-- Login email: admin@vapeshop.com
+-- Login password: Admin123!
+-- ============================================
