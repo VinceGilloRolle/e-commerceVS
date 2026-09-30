@@ -235,3 +235,32 @@ Cart is also stored in `localStorage` (no backend needed until checkout).
 | Frontend can't load products | Backend must be running on port 3000 |
 | `401 Unauthorized` on orders | Log in again; token may be missing/expired |
 | `Email already registered` | Use a different email or log in |
+
+---
+
+## 7. Mobile (Capacitor) + GitHub Actions
+
+Native projects live in `android/` and `ios/`.
+
+```bash
+npm install
+npm run build:mobile    # vite build + cap sync
+```
+
+**Local**
+- Android Studio: `npm run cap:android`
+- Xcode (macOS): `npm run cap:ios`
+
+**API URL for devices**
+
+Set `VITE_API_URL` (see `.env.example`), e.g. your deployed API:
+`VITE_API_URL=https://your-api.example.com/api`
+
+Android emulator can use `http://10.0.2.2:3000/api` to reach a host machine backend.
+
+**CI**
+
+- `.github/workflows/android.yml` → builds and uploads a **debug APK**
+- `.github/workflows/ios.yml` → builds an **iOS Simulator** `.app` (no App Store signing)
+
+Optional repo variable: `VITE_API_URL` (Settings → Variables).

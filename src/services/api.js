@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-// Base URL for the backend API
+// Use VITE_API_URL for device/production builds (localhost only works on desktop)
+const apiBase =
+  import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:3000/api';
+
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: apiBase,
   headers: {
     'Content-Type': 'application/json',
   },

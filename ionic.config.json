@@ -1,5 +1,7 @@
 {
   "name": "vape-shop",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "vue-vite"
 }
